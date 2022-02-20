@@ -18,7 +18,7 @@ contract ('Voting', function(accounts){
     //the voter's address
     const voterAddress = accounts[1];
     const voterAddress2 = accounts[2];
-    const voterAddress3 = accounts[3]; 
+    const voterAddress3 = accounts[3];  
 
 
     describe("Test StartProposalsRegistration", () => {
