@@ -19,17 +19,12 @@ contract ('Voting', function(accounts){
     const voterAddress = accounts[1];
     const voterAddress2 = accounts[2];
     const voterAddress3 = accounts[3];  
-/*beforeEach(async function() {
-            //Create a new instance Voting contract
-            this.VotingInstance = await Voting.new({from : owner}); 
-        });*/
+    beforeEach(async function() {
+        //Create a new instance Voting contract
+        this.VotingInstance = await Voting.new({from : owner}); 
+    });
 
     describe("Test StartProposalsRegistration", () => {
-        beforeEach(async function() {
-            //Create a new instance Voting contract
-            this.VotingInstance = await Voting.new({from : owner}); 
-        });
-        
         it("verify if Proposals Registration has started", async function(){
             //Big number of registration voters & Proposals registration started status
             let registrationVotersStatus = new BN(Voting.WorkflowStatus.registrationVoters);
@@ -55,10 +50,6 @@ contract ('Voting', function(accounts){
 
 
     describe("Test addvoter", () => {
-        beforeEach(async function() {
-            this.VotingInstance = await Voting.new({from : owner});
-        });
-
         it('verify if the voter has been added in the whitelist and an event has been triggered', async function() {
             //add a new voter in the whitelist and retrieve the receipt of the transaction
             let receipt = await this.VotingInstance.addVoter(voterAddress, {from : owner});
@@ -88,8 +79,6 @@ contract ('Voting', function(accounts){
 
     describe("Test registerProposal", () => {
         beforeEach(async function() {
-            this.VotingInstance = await Voting.new({from : owner});
-
             //Owner add a voter and start proposal registration 
             await this.VotingInstance.addVoter(voterAddress, {from : owner});
             await this.VotingInstance.StartProposalsRegistration({from : owner});
@@ -119,8 +108,6 @@ contract ('Voting', function(accounts){
 
     describe("Test Vote", () => {
         beforeEach(async function() {
-            this.VotingInstance = await Voting.new({from : owner});
-
             //we advance the Voting workflow until the start of voting
             await this.VotingInstance.addVoter(voterAddress, {from : owner});
             await this.VotingInstance.addVoter(voterAddress2, {from : owner});
