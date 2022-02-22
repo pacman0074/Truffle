@@ -19,7 +19,10 @@ contract ('Voting', function(accounts){
     const voterAddress = accounts[1];
     const voterAddress2 = accounts[2];
     const voterAddress3 = accounts[3];  
-
+/*beforeEach(async function() {
+            //Create a new instance Voting contract
+            this.VotingInstance = await Voting.new({from : owner}); 
+        });*/
 
     describe("Test StartProposalsRegistration", () => {
         beforeEach(async function() {
@@ -44,7 +47,7 @@ contract ('Voting', function(accounts){
             //Change the currentStatus of the contract to StartProposalsRegistration
             await this.VotingInstance.StartProposalsRegistration({from : owner});
 
-            //Expect owner's contract cannot register new voter because we are not anymore in registration voters
+            //Expect owner's contract cannot start proposals registrations
             await expectRevert(this.VotingInstance.StartProposalsRegistration({from : owner}), ERR_START_PROPOSAL_REGISTRATION_SESSION);                
             });
         });
