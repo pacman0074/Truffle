@@ -18,8 +18,9 @@
  *
  */
 
-const HDWalletProvider = require('truffle-hdwallet-provider');
-require('dotenv').config();
+const HDWalletProvider = require("truffle-hdwallet-provider");
+require("dotenv").config();
+console.log(process.env);
 //
 // const fs = require('fs');
 //const mnemonic = fs.readFileSync(".secret").toString().trim();
@@ -58,14 +59,24 @@ module.exports = {
     // },
     // Useful for deploying to a public network.
     // NB: It's important to wrap the provider as a function.
-    ropsten: {
-      provider: () => new HDWalletProvider(process.env.MNEMONIC, 
-        "https://ropsten.infura.io/v3/"+process.env.INFURA_ID),
-    // network_id: 3,       // Ropsten's id
-    // gas: 5500000,        // Ropsten has a lower block limit than mainnet
-    // confirmations: 2,    // # of confs to wait between deployments. (default: 0)
-    // timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
-    // skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
+    ropsten: { 
+      provider: () => new HDWalletProvider(process.env.MNEMONIC, process.env.URLRPCROPSTEN),
+      network_id: 3,       // Ropsten's id
+      gasPrice: 100000000000 ,        // Gas price used for deploys
+    // gas: 5500000,        // Gas limit used for deploys. Ropsten has a lower block limit than mainnet
+      confirmations: 2,    // # of confs to wait between deployments. (default: 0)
+      timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
+      skipDryRun: true,     // Skip dry run before migrations? (default: false for public nets )
+      networkCheckTimeout: 100000
+    },
+
+    matic: {
+      provider: () => new HDWalletProvider(process.env.MNEMONIC, process.env.URLRPCMATIC),
+      network_id: 80001,
+      confirmations: 2,
+      timeoutBlocks : 200,
+      skipDryRun: true,
+      networkCheckTimeout: 100000
     },
     // Useful for private networks
     // private: {
