@@ -20,7 +20,6 @@
 
 const HDWalletProvider = require("truffle-hdwallet-provider");
 require("dotenv").config();
-console.log(process.env);
 //
 // const fs = require('fs');
 //const mnemonic = fs.readFileSync(".secret").toString().trim();
