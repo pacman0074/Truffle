@@ -1,7 +1,7 @@
 // erc20.test.js 
 const { BN } = require('@openzeppelin/test-helpers');
 const { expect } = require('chai');
-const ERC20 = artifacts.require('ERC20Token');
+const ERC20 = artifacts.require('BlueToken');
 contract('ERC20', function (accounts) {
 const _name = 'ALYRA';
 const _symbol = 'ALY';
